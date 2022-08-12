@@ -7,6 +7,8 @@ import type { Services, Capabilities, Options } from '@wdio/types'
 import { makeCapabilityFactory } from './utils.js'
 import type { SauceServiceConfig } from './types'
 
+import fs from 'fs';
+
 const SC_RELAY_DEPCRECATION_WARNING = [
     'The "scRelay" option is depcrecated and will be removed',
     'with the upcoming versions of @wdio/sauce-service. Please',
@@ -95,6 +97,7 @@ export default class SauceLauncher implements Services.ServiceInstance {
     async startTunnel (sauceConnectOpts: SauceConnectOptions, retryCount = 0): Promise<SauceConnectInstance> {
         try {
             const scProcess = await this._api.startSauceConnect(sauceConnectOpts)
+            await this.waitForConnection(sauceConnectOpts.retries)
             return scProcess
         } catch (err: any) {
             ++retryCount
@@ -130,4 +133,16 @@ export default class SauceLauncher implements Services.ServiceInstance {
 
         return this._sauceConnectProcess.close()
     }
+
+    /**
+     * wait for sauce connect tunnel to build up
+     */
+    async waitForConnection(retryCount = 0) {
+        let attempt=0
+        while (attempt < retryCount && !fs.existsSync('/tmp/tunnel')) {
+            attempt += 1;
+            log.debug(`waiting for sauce connect to be up (attempt: ${attempt})...`);
+            await new Promise(f => setTimeout(f, 1000));
+        }
+     }
 }
