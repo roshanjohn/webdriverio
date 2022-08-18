@@ -3,7 +3,7 @@ const chromedriver = require('chromedriver')
 const WebDriver = require('../../packages/webdriver')
 
 ;(async () => {
-    await chromedriver.start(['--port=4444'])
+    await chromedriver.start([`--port=${process.env.PORT}`])
     const client = await WebDriver.newSession({
         capabilities: {
             browserName: 'chrome',
