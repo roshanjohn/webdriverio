@@ -23,7 +23,7 @@ const multiremoteConfig: Capabilities.MultiRemoteCapabilities = {
     },
     browserB: {
         logLevel: 'debug',
-        port: 4445,
+        port: process.env.DRIVER_PORT,
         capabilities: {
             browserName: 'firefox'
         }
