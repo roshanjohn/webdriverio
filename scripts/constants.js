@@ -10,7 +10,7 @@ import jsonwp from '../packages/wdio-protocols/protocols/jsonwp.json' assert { t
 
 export const PROTOCOLS = {
     webdriver, webdriverBidi, appium, mjsonwp,
-    chromium, gecko, saucelabs, selenium, jsonwp
+    chromium, gecko, webkit, saucelabs, selenium, jsonwp
 }
 export const PROTOCOL_NAMES = {
     appium: 'Appium',
@@ -20,6 +20,7 @@ export const PROTOCOL_NAMES = {
     webdriverBidi: 'WebDriver Bidi Protocol',
     chromium: 'Chromium',
     gecko: 'Firefox',
+    webkit: 'Safari',
     saucelabs: 'Sauce Labs',
     selenium: 'Selenium Standalone'
 }
