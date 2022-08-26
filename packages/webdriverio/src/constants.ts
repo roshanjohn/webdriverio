@@ -142,7 +142,7 @@ export const WDIO_DEFAULTS: Options.Definition<Options.WebdriverIO & Options.Tes
      */
     waitforInterval: {
         type: 'number',
-        default: 500
+        default: 1000
     },
     /**
      * Default timeout for all waitFor* commands
