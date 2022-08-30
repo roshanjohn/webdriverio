@@ -91,6 +91,10 @@ exports.config
         browserName: 'firefox',
         port: 5555
     }, {
+    }, {
+        browserName: 'safari',
+        port: 5555
+    }, {
         browserName: 'MicrosoftEdge',
         port: 5555
     }]
